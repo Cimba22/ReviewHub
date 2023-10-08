@@ -1,4 +1,4 @@
-FROM nginx:1.17.8-alpine
+FROM nginx:alpine3.18
 
 # Copy the public directory
 # COPY ./public/ /app/public/
