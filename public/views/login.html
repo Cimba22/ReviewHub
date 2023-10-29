@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container">
+        
+        <div class="logo"> <img src="../img/ParusLogo.svg"></div>
+        <div class="page__heading"><H2>Sign In</H2></div>
+
+        <div class="login__container">
+            <span></span>
+            <span></span>
+            <span></span>
+            
+            <form class="signinForm" action="/login" method="post">
+                <div class="inputBox">
+                    <label for="email">Username or email</label><br>
+                    <input type="email" id="email" name="email" required><br>
+                </div>
+
+                <div class="inputBox">
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" name="password" required><br>
+                </div>
+
+                <div class="inputBox">
+                    <a href="#">Forgot Your Password?</a><br>
+                </div>
+
+                <div class="inputBox">
+                    <input class="btn btn-1" type="submit" value="Sign In">
+                </div>
+
+                <div class="singup">
+                    <a class="signup__heading">New to ReviewHub?</a>
+                    <a id="signup__link" href="#">Create an acount</a>
+                </div>
+                <!-- <div class="inputBox group">
+                    <a class="signup__heading">New to ReviewHub?</a>
+                    <a href="#" id="signup">Create an acount</a>
+                </div> -->
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let signup = document.querySelector('#signup');
+        let body = document.querySelector('body');
+        signup.onclic = function(){
+            body.classList.add('signup');
+        }
+    </script>
+
+    <footer>
+
+    </footer>
+
+    
+    
+    
+</body>
+</html>
