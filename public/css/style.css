@@ -1,3 +1,103 @@
-body {
+/* Reset CSS */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #04040B; /* Background color */
+    font-family: Arial, sans-serif; /* Font family */
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+.logo img {
+    width: 150px; /* Logo width */
+    height: auto;
+}
+
+.page__heading {
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.login__container {
+    width: 400px;
+    border-radius: 15px;
+    background: #0A0A10; /* Container background color */
+    padding: 2rem;
+}
+
+.login__container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.inputBox label {
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+.inputBox a {
+    color: white;
+    opacity: 50%;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+
+.inputBox input {
+    width: 100%;
+    height: 55px;
+    outline: none;
+    border: 0.3px solid #FF0000;
+    border-radius: 15px;
+    background: #04040B; /* Input background color */
+    color: white;
+    font-size: 1.2em;
+    padding-left: 20px;
+}
+
+.btn {
+    width: 70%;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.signup a:last-child {
+    opacity: 50%;
+}
+
+.signup__heading, .signin__heading {
+    text-decoration: none;
+    color: white;
+}
+
+/* Additional styling for the "Create an account" link */
+#signup__link {
+    text-decoration: underline;
+}
+
+/* Hide the sign-up form initially */
+#signupForm {
+    display: none;
+}
+
+/* Show the sign-up form when the signup link is clicked */
+body.signup__link #signupForm {
+    display: block;
 }

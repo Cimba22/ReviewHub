@@ -2,7 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 
+    
 }
 
 body {
@@ -10,6 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+
 }
 
 body::before {
@@ -26,7 +29,7 @@ body::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: #01012b;
+    background: #04040B;
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -34,11 +37,9 @@ body::after {
     transition: 0.5s;
 }
 
-body.signup::after {
+body.signup__link::after {
     opacity: 1;
 }
-
-
 
 
 .container {
@@ -49,7 +50,6 @@ body.signup::after {
     justify-content: center;
     align-items: center;
 }
-
 
 
 .logo {
@@ -78,6 +78,10 @@ body.signup::after {
     overflow: hidden;
 }
 
+body.signup__link .login__container {
+    height: 550px;
+}
+
 
 
 .login__container::before {
@@ -89,6 +93,11 @@ body.signup::after {
     #ff3333 10%, transparent 10%, transparent 80%, #ff3333 100%);
     border-radius: 15px;
     animation: animate 10.5s linear infinite;
+}
+
+
+body.singup__link .login__container::before {
+    filter: hue-rotate(140deg);
 }
 
 @property --a {
@@ -136,6 +145,16 @@ body.signup::after {
 }
 
 
+body.signup__link .login__container span::before,
+body.signup__link .login__container span::after {
+    background: #0A0A10;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    /* filter: blur(15px); */
+}
+
+
 form {
     position: absolute;
     left: 0;
@@ -147,6 +166,20 @@ form {
     gap: 15px;
     transition: 0.5s;
 }
+
+form#signupForm {
+    left: 100%;
+}
+
+/* Не работает */
+body.signup__link form#signinForm {
+    left: -100%;
+}
+
+body.signup__link form#signupForm {
+    left: 0;
+}
+
 
 form .inputBox {
     position: relative;
@@ -210,6 +243,10 @@ form .inputBox input[type="submit"] {
     cursor: pointer;
 }
 
+form#signupForm .inputBox input[type="submit"] {
+    
+}
+
 
 
 
@@ -223,3 +260,8 @@ form .inputBox input[type="submit"] {
     border-top-style: solid;
     border-width: thin;
 } */
+
+@font-face {
+    font-family: Roboto-Medium;
+    src: url(../font/Roboto-Medium.ttf);
+}

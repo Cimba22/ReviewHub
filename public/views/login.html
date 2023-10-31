@@ -8,17 +8,19 @@
 </head>
 
 <body>
+    
     <div class="container">
         
         <div class="logo"> <img src="../img/ParusLogo.svg"></div>
         <div class="page__heading"><H2>Sign In</H2></div>
 
         <div class="login__container">
+    
             <span></span>
             <span></span>
             <span></span>
             
-            <form class="signinForm" action="/login" method="post">
+            <form id="signinForm">
                 <div class="inputBox">
                     <label for="email">Username or email</label><br>
                     <input type="email" id="email" name="email" required><br>
@@ -39,30 +41,60 @@
 
                 <div class="singup">
                     <a class="signup__heading">New to ReviewHub?</a>
-                    <a id="signup__link" href="#">Create an acount</a>
+                    <a id="signup__link" href="#">Create an account</a>
                 </div>
-                <!-- <div class="inputBox group">
-                    <a class="signup__heading">New to ReviewHub?</a>
-                    <a href="#" id="signup">Create an acount</a>
-                </div> -->
+        
             </form>
+
+            
+            <form id="signupForm">
+
+                <div class="inputBox">
+                    <label for="username">Username</label><br>
+                    <input type="text" id="username" name="username" required><br>
+                </div>
+
+                <div class="inputBox">
+                    <label for="email">Email Address</label><br>
+                    <input type="email" id="email" name="email" required><br>
+                </div>
+
+                <div class="inputBox">
+                    <label for="password">Create Password</label><br>
+                    <input type="password" id="password" name="password" required><br>
+                </div>
+
+                <div class="inputBox">
+                    <label for="password">Repeat Password</label><br>
+                    <input type="password" id="password" name="password" required><br>
+                </div>
+
+                <div class="inputBox">
+                    <input class="btn btn-1" type="submit" value="Create Account">
+                </div>
+
+                <div class="singup">
+                    <a class="signin__heading">Have an account?</a>
+                    <a id="signin__link" href="#">Sign In</a>
+                </div>
+        
+            </form>
+
+
         </div>
     </div>
 
     <script>
-        let signup = document.querySelector('#signup');
+        let signup__link = document.querySelector('#signup__link');
+        let signin__link = document.querySelector('#signin__link');
         let body = document.querySelector('body');
-        signup.onclic = function(){
-            body.classList.add('signup');
+        signup__link.onclick = function(){
+            body.classList.add('signup__link');
+        }
+        signin__link.onclick = function(){
+            body.classList.remove('signup__link');
         }
     </script>
 
-    <footer>
-
-    </footer>
-
-    
-    
-    
 </body>
 </html>
