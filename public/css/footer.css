@@ -1,0 +1,10 @@
+footer {
+    background-color: black;
+    width: 100vw;
+    height: 10vh;
+    position: absolute;
+    bottom: 0;
+    border-top: #FF0000;
+    border-top-style: solid;
+    border-width: thin;
+}
