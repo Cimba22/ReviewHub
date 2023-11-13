@@ -113,7 +113,6 @@ section {
     grid-template-columns: repeat(5, 1fr);
     padding: 2em;
     overflow: auto;
-
     margin-bottom: 200px;
 }
 
