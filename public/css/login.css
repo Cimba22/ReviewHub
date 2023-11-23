@@ -51,6 +51,8 @@ body.signup__link::after {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-bottom: 200px;
 }
 
 
@@ -59,10 +61,15 @@ body.signup__link::after {
 }
 
 .page__heading {
-    margin-bottom: 2rem;
-    font-size: 1.5em;
-    letter-spacing: 0.1em;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 1.875rem;
+    font-style: normal;
     font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.28125rem;
+
+    margin-bottom: 1.5rem;
     
 }
 
@@ -173,7 +180,7 @@ form#signupForm {
     left: 100%;
 }
 
-/* Не работает */
+
 body.signup__link form#signinForm {
     left: -100%;
 }
@@ -250,7 +257,316 @@ form#signupForm .inputBox input[type="submit"] {
 }
 
 
-@font-face {
-    font-family: Roboto-Medium;
-    src: url(../font/Roboto-Medium.ttf);
+@media (max-width: 1820px) {
+    /* container */
+
+
+}
+
+@media (min-width: 1351px) and (max-width: 1538px){
+
+    .page__heading {
+        color: blue;
+    }
+
+    /* container */
+    .container {
+        margin-bottom: 0;
+        /* max-width: 350px; */
+    }
+
+
+    img {
+        max-width: 90px;
+    }
+
+    .page__heading {
+        font-size: 1.5rem;
+    }
+
+
+    /* login__container */
+    .login__container {
+        /* max-width: 350px; */
+        max-height: 500px;
+    }
+
+    /* login__container -> form  */
+    form .inputBox {
+        width: 75%;
+    }
+
+    form .inputBox label {
+        font-size: 1em;
+        letter-spacing: 0.13333em;
+        font-weight: 400;
+    }
+
+    form .inputBox input {
+        height: 50px;
+        font-size: 1.1em;
+    }
+
+    form .inputBox input[type="submit"] {
+        width: 65%;
+        height: 45px;
+    }
+
+}
+
+@media (min-width: 1201px) and (max-width: 1350px){
+
+    .page__heading {
+        color: green;
+    }
+
+    /* container */
+    .container {
+        margin-bottom: 0;
+        /* max-width: 350px; */
+    }
+
+
+    img {
+        max-width: 90px;
+    }
+
+    .page__heading {
+        font-size: 1.5rem;
+    }
+
+
+    /* login__container */
+    .login__container {
+        /* max-width: 350px; */
+        max-height: 500px;
+    }
+
+    /* login__container -> form  */
+    form .inputBox {
+        width: 75%;
+    }
+
+    form .inputBox label {
+        font-size: 1em;
+        letter-spacing: 0.13333em;
+        font-weight: 400;
+    }
+
+    form .inputBox input {
+        height: 50px;
+        font-size: 1.1em;
+    }
+
+    form .inputBox input[type="submit"] {
+        width: 65%;
+        height: 45px;
+    }
+
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .page__heading {
+        color: violet;
+    }
+
+    /* container */
+    .container {
+        margin-bottom: 0;
+        /* max-width: 350px; */
+    }
+
+
+    img {
+        max-width: 90px;
+    }
+
+    .page__heading {
+        font-size: 1.5rem;
+    }
+
+
+    /* login__container */
+    .login__container {
+        /* max-width: 350px; */
+        max-height: 500px;
+    }
+
+    /* login__container -> form  */
+    form .inputBox {
+        width: 75%;
+    }
+
+    form .inputBox label {
+        font-size: 1em;
+        letter-spacing: 0.13333em;
+        font-weight: 400;
+    }
+
+    form .inputBox input {
+        height: 50px;
+        font-size: 1.1em;
+    }
+
+    form .inputBox input[type="submit"] {
+        width: 65%;
+        height: 45px;
+    }
+    
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .page__heading {
+        color: gold;
+    }
+
+    /* container */
+    .container {
+        margin-bottom: 0;
+        /* max-width: 350px; */
+    }
+
+
+    img {
+        max-width: 90px;
+    }
+
+    .page__heading {
+        font-size: 1.5rem;
+    }
+
+
+    /* login__container */
+    .login__container {
+        /* max-width: 350px; */
+        max-height: 500px;
+    }
+
+    /* login__container -> form  */
+    form .inputBox {
+        width: 75%;
+    }
+
+    form .inputBox label {
+        font-size: 1em;
+        letter-spacing: 0.13333em;
+        font-weight: 400;
+    }
+
+    form .inputBox input {
+        height: 50px;
+        font-size: 1.1em;
+    }
+
+    form .inputBox input[type="submit"] {
+        width: 65%;
+        height: 45px;
+    }
+
+
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .page__heading {
+        color: aqua;
+    }
+
+    /* container */
+    .container {
+        margin-bottom: 0;
+        /* max-width: 350px; */
+    }
+
+
+    img {
+        max-width: 90px;
+    }
+
+    .page__heading {
+        font-size: 1.5rem;
+    }
+
+
+    /* login__container */
+    .login__container {
+        /* max-width: 350px; */
+        max-height: 500px;
+    }
+
+    /* login__container -> form  */
+    form .inputBox {
+        width: 75%;
+    }
+
+    form .inputBox label {
+        font-size: 1em;
+        letter-spacing: 0.13333em;
+        font-weight: 400;
+    }
+
+    form .inputBox input {
+        height: 50px;
+        font-size: 1.1em;
+    }
+
+    form .inputBox input[type="submit"] {
+        width: 65%;
+        height: 45px;
+    }
+
+}
+
+/* TODO change only 320px  */
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .page__heading {
+        color: red;
+    }
+
+    /* container */
+    .container {
+        margin-bottom: 0;
+        /* max-width: 350px; */
+    }
+
+
+    img {
+        max-width: 90px;
+    }
+
+    .page__heading {
+        font-size: 1.5rem;
+    }
+
+
+    /* login__container */
+    .login__container {
+        /* max-width: 350px; */
+        max-height: 500px;
+    }
+
+    /* login__container -> form  */
+    form .inputBox {
+        width: 75%;
+    }
+
+    form .inputBox label {
+        font-size: 1em;
+        letter-spacing: 0.13333em;
+        font-weight: 400;
+    }
+
+    form .inputBox input {
+        height: 50px;
+        font-size: 1.1em;
+    }
+
+    form .inputBox input[type="submit"] {
+        width: 65%;
+        height: 45px;
+    }
+    
+
 }
