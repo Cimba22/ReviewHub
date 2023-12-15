@@ -16,14 +16,14 @@
     <header class="header">
         <div class="container">
             <div class="header__inner">
-                <a class="header__logo" href="#"> <img class="header__logo_img" src="public/img/Parus_ReviewHub.svg"></a>
+                <a class="header__logo" href=""> <img class="header__logo_img" src="public/img/Parus_ReviewHub.svg"></a>
                 
                 <nav class="nav">
                     <a class="nav__link" href="#">News</a>
                     <a class="nav__link" href="#">About</a>
                     <a class="nav__link" href="#">Contact</a>
-                    <a class="nav__link" href="#">Sign In</a>
-                    <a class="nav__link" href="#">Sign Up</a>
+                    <a class="nav__link" href="/login">Sign In</a>
+                    <a class="nav__link" href="/login">Sign Up</a>
                 </nav>
             </div>
         </div>
@@ -122,7 +122,7 @@
                     </div>
         
                     <div class="inputBox">
-                        <a class="signup__link" href="#">Registration</a>
+                        <a class="signup__link" href="/login">Registration</a>
                     </div>
 
                 </div>

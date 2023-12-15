@@ -7,13 +7,26 @@ require_once 'AppController.php';
 class DefaultController extends AppController{
 
 
-    public function index() {
-        $this->render('login');
+    public function index(): void
+    {
+        $this->render('hello-page');
     } 
 
 
-    public function project() {
-        $this->render('project');
+    public function login(): void
+    {
+        $this->render('login');
     }
+
+    public function dashboard(): void
+    {
+        $this->render('dashboard');
+    }
+
+    public function membersList(): void
+    {
+        $this->render('members-list');
+    }
+
     
 }

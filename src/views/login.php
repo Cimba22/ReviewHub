@@ -23,7 +23,8 @@
             <span></span>
             <span></span>
             
-            <form id="signinForm" action="/dashboard" method="post">
+            <form id="signinForm" action="/login" method="post">
+
                 <div class="inputBox">
                     <label for="email">Username or email</label><br>
                     <input type="email" id="email" name="email" required><br>
