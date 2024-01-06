@@ -71,8 +71,8 @@
                 </div>
 
                 <div class="inputBox">
-                    <label for="password">Repeat Password</label><br>
-                    <input type="password" id="password" name="password" required><br>
+                    <label for="confirm_password">Repeat Password</label><br>
+                    <input type="password" id="confirm_password" name="confirm_password" required><br>
                 </div>
 
                 <div class="inputBox">
