@@ -10,4 +10,5 @@ Routing::post('login', 'SecurityController');
 
 
 Routing::get('dashboard', 'DashboardController');
+
 Routing::run($path);

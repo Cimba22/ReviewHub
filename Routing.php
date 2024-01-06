@@ -1,7 +1,8 @@
 <?php
 
-require_once 'src/controller/DefaultController.php';
 require_once 'src/controller/SecurityController.php';
+require_once 'src/controller/DefaultController.php';
+
 
 class Routing {
 
@@ -20,7 +21,8 @@ class Routing {
     public static function run ($url): void
     {
         $action = explode("/", $url)[0];
-        if (!array_key_exists($action, array: self::$routes)) {
+        if (!array_key_exists($action, self::$routes)) {
+
             die("Wrong url!");
         }
 
