@@ -1,148 +1,121 @@
 <?php
 
-namespace model;
+//namespace model;
 
 class User
 {
-    private int $id;
-    private string $email;
+    private $userID;
+    private $login;
+    private $email;
+    private $password;
+    private $roleID;
+    private $firstName;
+    private $lastName;
+    private $registrationDate;
+    private $avatar;
 
-    private string $login;
-    private string $password;
-    private string $username;
-    private string $name;
-    private string $surname;
-    private string $role;
-
-    /**
-     * @param int $id
-     * @param string $email
-     * @param string $login
-     * @param string $password
-     * @param string $username
-     * @param string $name
-     * @param string $surname
-     * @param string $role
-     */
-    public function __construct(int $id, string $email, string $login, string $password, string $username, string $name, string $surname, string $role)
+    public function __construct($userID, $login, $email, $password, $roleID, $firstName, $lastName, $registrationDate, $avatar)
     {
-        $this->id = $id;
-        $this->email = $email;
+        $this->userID = $userID;
         $this->login = $login;
+        $this->email = $email;
         $this->password = $password;
-        $this->username = $username;
-        $this->name = $name;
-        $this->surname = $surname;
-        $this->role = $role;
+        $this->roleID = $roleID;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->registrationDate = $registrationDate;
+        $this->avatar = $avatar;
     }
 
+    public function getUserID()
+    {
+        return $this->userID;
+    }
 
-    public function getLogin(): string
+    public function setUserID($userID): void
+    {
+        $this->userID = $userID;
+    }
+
+    public function getLogin()
     {
         return $this->login;
     }
 
-    public function setLogin(string $login): void
+    public function setLogin($login): void
     {
         $this->login = $login;
     }
 
-
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): void
+    public function setEmail($email): void
     {
         $this->email = $email;
     }
 
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): void
+    public function setPassword($password): void
     {
         $this->password = $password;
     }
 
-    public function getUsername(): string
+    public function getRoleID()
     {
-        return $this->username;
+        return $this->roleID;
     }
 
-    public function setUsername(string $username): void
+    public function setRoleID($roleID): void
     {
-        $this->username = $username;
+        $this->roleID = $roleID;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->name;
+        return $this->firstName;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name): void
+    public function setFirstName($firstName): void
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSurname()
+    public function getLastName()
     {
-        return $this->surname;
+        return $this->lastName;
     }
 
-    /**
-     * @param mixed $surname
-     */
-    public function setSurname($surname): void
+    public function setLastName($lastName): void
     {
-        $this->surname = $surname;
+        $this->lastName = $lastName;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRole()
+    public function getRegistrationDate()
     {
-        return $this->role;
+        return $this->registrationDate;
     }
 
-    /**
-     * @param mixed $role
-     */
-    public function setRole($role): void
+    public function setRegistrationDate($registrationDate): void
     {
-        $this->role = $role;
+        $this->registrationDate = $registrationDate;
     }
 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar): void
+    {
+        $this->avatar = $avatar;
+    }
 
 
 
