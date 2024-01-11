@@ -1,8 +1,8 @@
 <?php
 
-namespace repository;
+namespace DBManager;
 
-class CategoryRepository extends \Repository
+class CategoryDatabase extends \DBManager\Database
 {
     public function addCategory(int $id, string $name): void
     {

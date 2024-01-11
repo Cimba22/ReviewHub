@@ -1,8 +1,8 @@
 <?php
 
-namespace repository;
+namespace DBManager;
 
-class ReviewRepository extends \Repository
+class ReviewDatabase extends \DBManager\Database
 {
 
 

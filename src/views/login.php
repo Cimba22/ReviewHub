@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap" rel="stylesheet">
     <title>Login</title>
+    <script src="public/js/validation.js"></script>
 </head>
 
 <body>
@@ -53,7 +54,7 @@
 
             
             
-            <form id="signupForm" action="/login" method="post">    
+            <form id="signupForm" action="/registration" method="post">
 
                 <div class="inputBox">
                     <label for="username">Username</label><br>
