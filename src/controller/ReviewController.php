@@ -5,6 +5,10 @@ require_once 'AppController.php';
 class ReviewController extends \AppController
 {
 
+    public function dashboard(): void
+    {
+        $this->render('dashboard');
+    }
 
     public function addReview() {
 

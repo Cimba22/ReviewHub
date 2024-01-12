@@ -43,30 +43,12 @@ class SecurityController extends AppController
                 $_SESSION['userId'] = $user['userID']; // сохраняем ID пользователя в сессии
                 //Todo Сделать нормальные переход на страницу через DefaultController, а не через функцию в ReviewController
                 header('Location: /dashboard'); // перенаправляем на страницу после успешного входа
-                exit();
             } else {
                 // Неправильный логин или пароль
                 $_SESSION['error'] = 'Invalid login or password.';
                 header('Location: /login');
-                exit();
             }
-
-//            // Проверка наличия пользователя в базе данных
-//            $user = $this->userDatabase->getUserByEmail($email);
-//
-//
-//
-//            if ($user && isset($user['id']) && isset($user['password']) && $password === $user['password']) {
-//                // Пользователь аутентифицирован
-//                $_SESSION['user_id'] = $user['id']; // сохраняем ID пользователя в сессии
-//                header('Location: /dashboard'); // перенаправляем на страницу после успешного входа
-//                exit();
-//            } else {
-//                // Неправильный логин или пароль
-//                $_SESSION['error'] = 'Invalid login or password.';
-//                header('Location: /login');
-//                exit();
-//            }
+            exit();
         }
 
 

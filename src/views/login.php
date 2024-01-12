@@ -39,8 +39,8 @@
                 </div>
 
                 <div class="inputBox">
-                    <label for="email">Username or email</label><br>
-                    <input type="email" id="email" name="email" required><br>
+                    <label for="email">Email</label><br>
+                    <input type="email" id="email" name="email" required ><br>
                 </div>
 
                 <div class="inputBox">
