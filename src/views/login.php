@@ -26,6 +26,18 @@
             
             <form id="signinForm" action="/login" method="post">
 
+                <div class="messages">
+                    <?php
+                    if (session_status() === PHP_SESSION_NONE) {
+                        session_start();
+                    }
+                    if (isset($_SESSION['error'])) {
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']); // очищаем ошибку после вывода
+                    }
+                    ?>
+                </div>
+
                 <div class="inputBox">
                     <label for="email">Username or email</label><br>
                     <input type="email" id="email" name="email" required><br>
@@ -55,6 +67,18 @@
             
             
             <form id="signupForm" action="/registration" method="post">
+
+                <div class="messages">
+                    <?php
+                    if (session_status() === PHP_SESSION_NONE) {
+                        session_start();
+                    }
+                    if (isset($_SESSION['error'])) {
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']); // очищаем ошибку после вывода
+                    }
+                    ?>
+                </div>
 
                 <div class="inputBox">
                     <label for="username">Username</label><br>

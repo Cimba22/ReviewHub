@@ -1,9 +1,11 @@
 <?php
 
-namespace controller;
+require_once 'AppController.php';
 
-class ReviewController
+class ReviewController extends \AppController
 {
+
+
     public function addReview() {
 
     }

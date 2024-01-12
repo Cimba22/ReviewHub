@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 require_once 'AppController.php';
 require_once __DIR__ . '/../model/User.php';
 require_once __DIR__ . '/../DBManager/DBConnection.php';
@@ -22,67 +18,103 @@ class SecurityController extends AppController
 
     public function login(): void
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+
         if ($this->isPost()) {
             // Обработка логинации
-            $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if (empty($login) || empty($password)) {
-                echo 'Both login and password are required.';
-                return;
+
+            if (empty($email) || empty($password)) {
+                $_SESSION['error'] = 'Both email and password are required.';
+                header('Location: /login'); // перенаправляем обратно на страницу входа
+                exit();
             }
 
             // Проверка наличия пользователя в базе данных
-            $user = $this->userDatabase->getUserByEmail($login);
+            $user = $this->userDatabase->getUserByEmail($email);
 
-            if ($user && password_verify($password, $user['password'])) {
+            if ($user && isset($user['userID']) && password_verify($password, $user['password'])) {
                 // Пользователь аутентифицирован, выполните необходимые действия
-                echo 'Logged in successfully!';
+                $_SESSION['userId'] = $user['userID']; // сохраняем ID пользователя в сессии
+                //Todo Сделать нормальные переход на страницу через DefaultController, а не через функцию в ReviewController
+                header('Location: /dashboard'); // перенаправляем на страницу после успешного входа
+                exit();
             } else {
                 // Неправильный логин или пароль
-                echo 'Invalid login or password.';
+                $_SESSION['error'] = 'Invalid login or password.';
+                header('Location: /login');
+                exit();
             }
+
+//            // Проверка наличия пользователя в базе данных
+//            $user = $this->userDatabase->getUserByEmail($email);
+//
+//
+//
+//            if ($user && isset($user['id']) && isset($user['password']) && $password === $user['password']) {
+//                // Пользователь аутентифицирован
+//                $_SESSION['user_id'] = $user['id']; // сохраняем ID пользователя в сессии
+//                header('Location: /dashboard'); // перенаправляем на страницу после успешного входа
+//                exit();
+//            } else {
+//                // Неправильный логин или пароль
+//                $_SESSION['error'] = 'Invalid login or password.';
+//                header('Location: /login');
+//                exit();
+//            }
         }
+
 
         $this->render('login');
     }
 
     public function registration(): void
     {
-        //TODO поменять вводимые данные
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         if ($this->isPost()) {
             // Обработка регистрации
-            $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $surname = filter_input(INPUT_POST, 'surname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $login = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if (empty($name) || empty($surname) || empty($email) || empty($password) || empty($confirm_password)) {
-                echo 'All fields are required.';
-                return;
+            if (empty($login) || empty($email) || empty($password) || empty($confirm_password)) {
+                $_SESSION['error'] = 'All fields are required.';
+                header('Location: /registration'); // перенаправляем обратно на страницу регистрации
+                exit();
             }
 
             if ($password !== $confirm_password) {
-                echo 'Passwords do not match.';
-                return;
+                $_SESSION['error'] = 'Passwords do not match.';
+                header('Location: /registration');
+                exit();
             }
 
             // Дополнительные проверки, например, проверка уникальности email
             $existingUser = $this->userDatabase->getUserByEmail($email);
             if ($existingUser) {
-                echo 'User with this email already exists.';
-                return;
+                $_SESSION['error'] = 'User with this email already exists.';
+                header('Location: /registration');
+                exit();
             }
 
-            // Пример использования UserDatabase для добавления нового пользователя
-//            $this->userDatabase->addUser($name, $surname, $email, $password);
-//
-//            // Вывод успешного сообщения или редирект на страницу логина
-//            echo 'Registration successful!';
+            $this->userDatabase->addUser($login, $email, $password);
+
+            $_SESSION['success'] = 'Registration successful!';
+            header('Location: /login'); // перенаправляем на страницу входа после успешной регистрации
+            exit();
         }
 
-        $this->render('registration');
+        $this->render('login');
     }
 
 

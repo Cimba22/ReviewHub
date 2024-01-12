@@ -10,7 +10,7 @@ class UserDatabase extends Database
 {
     public function getUserByEmail($email) {
         try {
-            $stmt = $this->database->getConnection()->prepare("SELECT * FROM Users WHERE Email = :email");
+            $stmt = $this->database->getConnection()->prepare("SELECT * FROM public.users WHERE email = :email");
             $stmt->bindParam(':email', $email);
 
             if ($stmt->execute()) {
@@ -33,7 +33,7 @@ class UserDatabase extends Database
     }
 
 
-    public function addUser(string $name, string $surname, string $email, string $password): void
+    public function addUser(string $login, string $email, string $password): void
     {
         try {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -44,8 +44,8 @@ class UserDatabase extends Database
             }
 
             $stmt = $this->database->getConnection()->prepare('
-            INSERT INTO user (name, surname, email, password)
-            VALUES (:name, :surname, :email, :password)
+            INSERT INTO users (login, email, password)
+            VALUES (:login, :email, :password)
         ');
 
             if ($stmt === false) {
@@ -53,8 +53,7 @@ class UserDatabase extends Database
                 throw new Exception("Error preparing the SQL statement.");
             }
 
-            $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':surname', $surname);
+            $stmt->bindParam(':login', $login);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $hashedPassword);
 
@@ -72,19 +71,19 @@ class UserDatabase extends Database
     }
 
     public function getUserInformation($userID) {
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM UserInformation WHERE UserID = :userID");
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM userInformation WHERE userID = :userID");
         $stmt->bindParam(':userID', $userID);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function addUserInformation($userID, $firstName, $lastName, $registrationDate, $avatar): void
+    public function addUserInformation($userID, $name, $surname, $registrationDate, $avatar): void
     {
-        $stmt = $this->database->getConnection()->prepare("INSERT INTO UserInformation (UserID, FirstName, LastName, RegistrationDate, Avatar) 
+        $stmt = $this->database->getConnection()->prepare("INSERT INTO UserInformation (userID, name, surname, registrationDate, avatar) 
                                    VALUES (:userID, :firstName, :lastName, :registrationDate, :avatar)");
         $stmt->bindParam(':userID', $userID);
-        $stmt->bindParam(':firstName', $firstName);
-        $stmt->bindParam(':lastName', $lastName);
+        $stmt->bindParam(':firstName', $name);
+        $stmt->bindParam(':lastName', $surname);
         $stmt->bindParam(':registrationDate', $registrationDate);
         $stmt->bindParam(':avatar', $avatar);
         $stmt->execute();
@@ -96,7 +95,7 @@ class UserDatabase extends Database
     {
         $stmt = $this->database->getConnection()->prepare('
         DELETE FROM user
-        WHERE id = ?
+        WHERE userID = ?
     ');
 
         $stmt->execute([$id]);

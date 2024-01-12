@@ -10,6 +10,6 @@ Routing::post('login', 'SecurityController');
 Routing::post('registration', 'SecurityController');
 
 
-Routing::get('dashboard', 'DashboardController');
+Routing::get('dashboard', 'ReviewController');
 
 Routing::run($path);
