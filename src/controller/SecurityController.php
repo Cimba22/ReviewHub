@@ -41,8 +41,7 @@ class SecurityController extends AppController
             if ($user && isset($user['userID']) && password_verify($password, $user['password'])) {
                 // Пользователь аутентифицирован, выполните необходимые действия
                 $_SESSION['userId'] = $user['userID']; // сохраняем ID пользователя в сессии
-                //Todo Сделать нормальные переход на страницу через DefaultController, а не через функцию в ReviewController
-                header('Location: /dashboard'); // перенаправляем на страницу после успешного входа
+                header('Location: /categories'); // перенаправляем на страницу после успешного входа
             } else {
                 // Неправильный логин или пароль
                 $_SESSION['error'] = 'Invalid login or password.';
