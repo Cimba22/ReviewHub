@@ -11,8 +11,19 @@ class Content
     private $releaseYear;
     private $rating;
     private $dateAdded;
+    private $categoryid;
 
-    public function __construct($contentID, $title, $directorOrAuthor, $genre, $releaseYear, $rating, $dateAdded)
+    /**
+     * @param $contentID
+     * @param $title
+     * @param $directorOrAuthor
+     * @param $genre
+     * @param $releaseYear
+     * @param $rating
+     * @param $dateAdded
+     * @param $categoryid
+     */
+    public function __construct($contentID, $title, $directorOrAuthor, $genre, $releaseYear, $rating, $dateAdded, $categoryid)
     {
         $this->contentID = $contentID;
         $this->title = $title;
@@ -21,7 +32,21 @@ class Content
         $this->releaseYear = $releaseYear;
         $this->rating = $rating;
         $this->dateAdded = $dateAdded;
+        $this->categoryid = $categoryid;
     }
+
+
+    public function getCategoryid()
+    {
+        return $this->categoryid;
+    }
+
+    public function setCategoryid($categoryid): void
+    {
+        $this->categoryid = $categoryid;
+    }
+
+
 
     public function getContentID()
     {
