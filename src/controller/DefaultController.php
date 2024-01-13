@@ -21,15 +21,7 @@ class DefaultController extends AppController{
         $this->render('login');
     }
 
-    public function dashboard(): void
-    {
-        $this->render('dashboard');
-    }
 
-    public function membersList(): void
-    {
-        $this->render('members-list');
-    }
 
     
 }
