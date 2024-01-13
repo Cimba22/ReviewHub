@@ -107,41 +107,20 @@
                 </div>
 
                 <section class="theme__boxes">
-                    <div class="theme__box" id="box1">
-                        <a class="category__link" href="books.html">
-                            <img src="public/img/boxFoto.svg" alt="book">
-                            <span><h3 class="box__name">Books</h3></span>
-                        </a>
-                    </div>
 
-                    <div class="theme__box" id="box2">
-                        <a class="category__link" href="films.html">
-                            <img class="theme__img" src="public/img/boxFoto.svg" alt="films">
-                            <span><h3 class="box__name">Films</h3></span>
-                        </a>
-                    </div>
-
-                    <div class="theme__box" id="box3">
-                        <a class="category__link" href="serials.html">
-                            <img class="theme__img" src="public/img/boxFoto.svg" alt="serials">
-                            <span><h3 class="box__name">Serials</h3></span>
-                        </a>
-                    </div>
-
-                    <div class="theme__box" id="box4">
-                        <a class="category__link" href="games.html">
-                            <img class="theme__img" src="public/img/boxFoto.svg" alt="games">
-                            <span><h3 class="box__name">Games</h3></span>
-                        </a>
-                    </div>
-
-                    <div class="theme__box" id="box5">
-                        <a class="category__link" href="podcasts.html">
-                            <img class="theme__img" src="public/img/boxFoto.svg" alt="podcasts">
-                            <span><h3 class="box__name">Podcasts</h3></span>
-                        </a>
-                    </div>
+                    <?php foreach ($categories as $category): ?>
+                        <div id="<?= $category->getCategoryid(); ?>">
+                            <div class="theme__box" id="box1">
+                                <a class="category__link" href="<?php echo 'views/category/books.php'; ?>">
+                                    <img src="public/img/boxFoto.svg" alt="book">
+                                    <span><h3 class="box__name"><?= $category->getCategoryname(); ?></h3></span>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </section>
+
+
 
 
             </div>
