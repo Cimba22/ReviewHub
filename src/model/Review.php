@@ -11,8 +11,10 @@ class Review
     private $rating;
     private $reviewDate;
     private $access;
+    private $categoryid;
 
-    public function __construct($reviewID, $userID, $contentID, $reviewText, $rating, $reviewDate, $access)
+
+    public function __construct($reviewID, $userID, $contentID, $reviewText, $rating, $reviewDate, $access, $categoryid)
     {
         $this->reviewID = $reviewID;
         $this->userID = $userID;
@@ -21,7 +23,21 @@ class Review
         $this->rating = $rating;
         $this->reviewDate = $reviewDate;
         $this->access = $access;
+        $this->categoryid = $categoryid;
     }
+
+
+    public function getCategoryid()
+    {
+        return $this->categoryid;
+    }
+
+    public function setCategoryid($categoryid): void
+    {
+        $this->categoryid = $categoryid;
+    }
+
+
 
     public function getReviewID()
     {

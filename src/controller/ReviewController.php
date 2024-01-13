@@ -1,12 +1,18 @@
 <?php
 
+use model\Review;
+use session\SessionManager;
+
 require_once 'AppController.php';
 
 class ReviewController extends \AppController
 {
 
-    public function dashboard(): void
+    public function review(): void
     {
+//        $userID = SessionManager::getCurrentUserID();
+//        $reviews = (new ReviewDatabase)->getReviews($userID);
+//        $this->render('dashboard', ['reviews' => $reviews]);
         $this->render('dashboard');
     }
 
