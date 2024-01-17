@@ -40,7 +40,9 @@ class SecurityController extends AppController
 
             if ($user && isset($user['userID']) && password_verify($password, $user['password'])) {
                 // Пользователь аутентифицирован, выполните необходимые действия
-                $_SESSION['userId'] = $user['userID']; // сохраняем ID пользователя в сессии
+                $_SESSION['userID'] = $user['userID']; // сохраняем ID пользователя в сессии
+                $_SESSION['roleID'] = $user['roleID'];
+                $_SESSION['login'] = $user['login'];
                 header('Location: /categories'); // перенаправляем на страницу после успешного входа
             } else {
                 // Неправильный логин или пароль
@@ -101,15 +103,18 @@ class SecurityController extends AppController
 
 
 
-    //TODO add session for it
-//    public function logout() {
-//        // Разрушаем сессию и перенаправляем пользователя на страницу логина
-//        session_start();
-//        session_unset();
-//        session_destroy();
-//        header("Location: /login"); // Укажите URL вашей страницы логина
-//        exit();
-//    }
+    public function logout() {
+        // Проверяем, активна ли сессия
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            // Разрушаем сессию и перенаправляем пользователя на страницу логина
+            session_start();
+            session_unset();
+            session_destroy();
+        }
+        header("Location: /login"); // Укажите URL вашей страницы логина
+        exit();
+    }
+
 
 
 }
