@@ -58,6 +58,35 @@ class ReviewDatabase extends Database
         }
     }
 
+    public function getReviewsByCategoryAndUser($categoryID, $userID): false|array
+    {
+        try {
+            $conn = $this->database->getConnection();
+
+            $query = '
+            SELECT r."reviewID", r."userID", r."contentID", r."reviewText", r."rating", r."reviewDate", r."access", r."categoryid", r."lastModified",
+                   c."title", c."directorOrAuthor", c."genre", c."releaseYear", c."rating" as "contentRating", c."dateAdded" as "contentDateAdded",
+                   cat."categoryname"
+            FROM "reviews" r
+            JOIN "content" c ON r."contentID" = c."contentID"
+            JOIN "category" cat ON r."categoryid" = cat."categoryid"
+            WHERE r."userID" = :userID AND r."categoryid" = :categoryID
+            ORDER BY r."reviewDate" DESC';
+
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+            $stmt->bindParam(':categoryID', $categoryID, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            echo "Ошибка подключения к базе данных: " . $e->getMessage();
+            return [];
+        }
+    }
+
+
     public function getReviewTitleByCategoryId($categoryId)
     {
         try {

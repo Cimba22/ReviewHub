@@ -10,8 +10,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
     <script src="public/js/greeting.js"></script>
     <script src="public/js/iconMenu.js"></script>
+    <script src="public/js/confirmLogout.js"></script>
 
-    <title>Dashboard</title>
+    <title>Categories</title>
 </head>
 <body>
     
@@ -70,7 +71,7 @@
                                     </li>
 
                                     <li class="list">
-                                        <a href="#" class="nav-link">
+                                        <a href="/logout" class="nav-link" onclick="confirmLogout()">
                                             <span class="link">Logout</span>
                                         </a>
                                     </li>
@@ -111,7 +112,7 @@
                     <?php foreach ($categories as $category): ?>
                         <div id="<?= $category->getCategoryid(); ?>">
                             <div class="theme__box" id="box1">
-                                <a class="category__link" href="<?php echo 'views/category/books.php'; ?>">
+                                <a class="category__link" href="/reviews?category_id=<?= $category->getCategoryid(); ?>">
                                     <img src="public/img/boxFoto.svg" alt="book">
                                     <span><h3 class="box__name"><?= $category->getCategoryname(); ?></h3></span>
                                 </a>

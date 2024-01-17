@@ -1,14 +1,34 @@
 <?php
 
-namespace session;
+
 
 class SessionManager
 {
 
+    public static function startSession(): void
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
     public static function getCurrentUserID()
     {
-        session_start();
-        return $_SESSION['user_id'] ?? null;
+        self::startSession();
+        return $_SESSION['userID'] ?? null;
     }
+
+    public static function getCurrentUserLogin()
+    {
+        self::startSession();
+        return $_SESSION['login'] ?? null;
+    }
+
+    public static function getCurrentUserRoleID()
+    {
+        self::startSession();
+        return$_SESSION['roleID'] ?? null;
+    }
+
 
 }

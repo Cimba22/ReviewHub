@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
     <script src="public/js/greeting.js"></script>
-    <script src="/public/js/iconMenu.js"></script>
+    <script src="public/js/iconMenu.js"></script>
 
     <title>Books</title>
 </head>
 <body>
+
     
 
     <header class="header">
@@ -27,10 +29,12 @@
                         <img class="avatar__circle" src="public/img/userAvatar.svg"
                              alt sizes="48" height="48" width="48" >
 
+
                         <div class="sidebar">
 
                             <img class="avatar__circle" src="public/img/userAvatar.svg"
                                  alt sizes="48" height="48" width="48" >
+                            <span style="padding-left: 38px"> <?php echo SessionManager::getCurrentUserLogin(); ?></span>
 
                             <div class="sidebar_content">
                                 <ul class="lists">
@@ -99,7 +103,8 @@
                     <div class="day__hello">
                             <h2 class="msg__hello" id="greetingMessage">Good morning</h2>
                     </div>
-                        
+
+
                     <div class="day__quote">
                         <h4 class="msg_quote">Did I ever tell you 
                             what the definition of insanity is?</h4>
@@ -108,14 +113,13 @@
 
                 <section class="theme__boxes">
                     <?php foreach ($reviews as $review): ?>
-                    <div class="theme__box">
-                        <a class="category__link" href="review_details.php?reviewID=<?= $review['reviewID'] ?>">
-                            <h3 class="box__name"><?= $review['title'] ?></h3>
-                        </a>
-                    </div>
+                        <div class="theme__box">
+                            <a class="category__link" href="review_details.php?reviewID=<?= $review['reviewID'] ?>">
+                                <h3 class="box__name"><?= $review['title'] ?></h3>
+                            </a>
+                        </div>
                     <?php endforeach; ?>
                 </section>
-
 
 
             </div>
