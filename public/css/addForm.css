@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+    font-size: large;
+    line-height: 1.6;
+    color: white
+}
+
+
+
+.add__container{
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /*width: 800px;*/
+    /*height: 550px;*/
+
+
+}
+
+form {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    transition: 0.5s;
+}
+
+form .inputBox {
+    position: relative;
+    /*width: 80%;*/
+    padding: 10px 0;
+
+
+}
+
+form .addForm{
+    position: relative;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+select {
+    width: 100px;
+    color: black;
+
+}
+
+.reviewText {
+    display: grid;
+}
+
+textarea#reviewText{
+    background-color: #04040B;
+    font-weight: 300;
+    font-size: 1.3em;
+    border: #EC1212 1.5px solid;
+}
+
+
+input, select, option{
+    color: #FFFFFF;
+    background-color: #04040B;
+    border: #EC1212 1.5px solid;
+
+    height: 35px;
+    padding-left: 20px;
+}
+
+.SaveReviewText{
+    width: 70%;
+    height: 50px;
+    padding: unset;
+
+    cursor: pointer;
+    font-weight: 500;
+
+    background-color: #04040B;
+    color: #FFFFFF;
+    border: #EC1212 1.5px solid;
+
+}

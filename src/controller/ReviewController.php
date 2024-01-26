@@ -30,10 +30,25 @@ class ReviewController extends \AppController
         $this->render('reviews', ['reviews' => $reviews]);
     }
 
+    public function reviewDetails(): void
+    {
+        $reviewID = isset($_GET['reviewID']) ? (int)$_GET['reviewID'] : null;
+
+
+        if (!is_numeric($reviewID)) {
+            echo "Invalid review ID";
+            exit();
+        }
+
+        $reviewDetails = $this->reviewDatabase->getReviewDetails($reviewID);
+        $this->render('reviewDetails', ['reviewDetails' => $reviewDetails]);
+    }
+
+
     public function reviewsByCategory(): void
     {
         // Получаем id категории из строки запроса
-        $categoryID = isset($_GET['category_id']) ? $_GET['category_id'] : null;
+        $categoryID = $_GET['category_id'] ?? null;
 
         // Проверяем, чтобы избежать SQL-инъекций (лучше использовать подготовленные запросы)
         if (!is_numeric($categoryID)) {
@@ -51,9 +66,54 @@ class ReviewController extends \AppController
         $this->render('reviews', ['reviews' => $reviews]);
     }
 
-    public function addReview() {
+    public function add(): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
+        if ($this->isPost()) {
+            // Получение данных из формы
+            $directorOrAuthor = filter_input(INPUT_POST, 'directorOrAuthor', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $rating = filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_FLOAT);
+            $categoryid = filter_input(INPUT_POST, 'categories', FILTER_VALIDATE_INT);
+            $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // Получение userID из сессии
+            $userID = SessionManager::getCurrentUserID();
+
+            // Проверка на null для безопасности
+            if ($userID === null) {
+                $_SESSION['error'] = 'User not logged in.';
+                header('Location: /login');  // Редирект на страницу входа
+                exit();
+            }
+
+            // Дополнительные проверки, например, для числового рейтинга
+            if (!is_numeric($rating) || $rating < -10 || $rating > 10) {
+                $_SESSION['error'] = 'Invalid rating value.';
+                header('Location: /add');
+                exit();
+            }
+
+            // Добавление данных в базу данных
+            $success = $this->reviewDatabase->addReview($userID, $directorOrAuthor, $title, $rating, $categoryid, $reviewText);
+
+            if ($success) {
+                $_SESSION['success'] = 'Review added successfully!';
+                header('Location: /categories');
+                exit();
+            } else {
+                $_SESSION['error'] = 'Failed to add review. Please try again later.';
+                header('Location: /add');
+                exit();
+            }
+        }
+
+        $this->render('add');
     }
+
 
     public function updateReview() {
 
@@ -63,7 +123,31 @@ class ReviewController extends \AppController
 
     }
 
-    public function deleteReview() {
+    public function delete(): void
+    {
+        if ($this->isPost()) {
+            $userID = SessionManager::getCurrentUserID();
+            $categoryID = filter_input(INPUT_POST, 'category_id', FILTER_VALIDATE_INT);
+            $reviewID = filter_input(INPUT_POST, 'reviewID', FILTER_VALIDATE_INT);
 
+
+            if (!$userID || !$categoryID || !$reviewID) {
+                $_SESSION['error'] = 'Invalid parameters for review deletion.';
+                exit();
+            }
+
+
+            $success = $this->reviewDatabase->deleteReviewById($reviewID);
+
+            if ($success) {
+                $_SESSION['success'] = 'Review deleted successfully!';
+                header('Location: /categories');
+                exit();
+            } else {
+                $_SESSION['error'] = 'Failed to delete review. Please try again later.';
+                header('Location: /categories');
+                exit();
+            }
+        }
     }
 }

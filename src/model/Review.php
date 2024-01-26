@@ -12,9 +12,20 @@ class Review
     private $reviewDate;
     private $access;
     private $categoryid;
+    private $reviewCover;
 
-
-    public function __construct($reviewID, $userID, $contentID, $reviewText, $rating, $reviewDate, $access, $categoryid)
+    /**
+     * @param $reviewID
+     * @param $userID
+     * @param $contentID
+     * @param $reviewText
+     * @param $rating
+     * @param $reviewDate
+     * @param $access
+     * @param $categoryid
+     * @param $reviewCover
+     */
+    public function __construct($reviewID, $userID, $contentID, $reviewText, $rating, $reviewDate, $access, $categoryid, $reviewCover)
     {
         $this->reviewID = $reviewID;
         $this->userID = $userID;
@@ -24,7 +35,22 @@ class Review
         $this->reviewDate = $reviewDate;
         $this->access = $access;
         $this->categoryid = $categoryid;
+        $this->reviewCover = $reviewCover;
     }
+
+
+    public function getReviewCover()
+    {
+        return $this->reviewCover;
+    }
+
+    public function setReviewCover($reviewCover): void
+    {
+        $this->reviewCover = $reviewCover;
+    }
+
+
+
 
 
     public function getCategoryid()

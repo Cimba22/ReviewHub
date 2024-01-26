@@ -27,7 +27,13 @@ class SessionManager
     public static function getCurrentUserRoleID()
     {
         self::startSession();
-        return$_SESSION['roleID'] ?? null;
+        return $_SESSION['roleID'] ?? null;
+    }
+
+    public static function isUserLoggedIn(): bool
+    {
+        self::startSession();
+        return !empty($_SESSION['userID']);
     }
 
 
