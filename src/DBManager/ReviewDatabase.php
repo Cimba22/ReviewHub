@@ -225,52 +225,27 @@ class ReviewDatabase extends Database
         try {
             $connection = $this->database->getConnection();
 
-            // Убедимся, что у нас есть соединение
-            if (!$connection) {
-                $_SESSION['error'] = 'Database connection error.';
-                header('Location: /categories');
-                exit();
-            }
-
-            $queryDeleteReview = "DELETE FROM reviews WHERE \"reviewID\" = :reviewId";
-            $statementDeleteReview = $connection->prepare($queryDeleteReview);
-            $statementDeleteReview->bindParam(":reviewId", $reviewId, PDO::PARAM_INT);
-
-            if (!$statementDeleteReview->execute()) {
-                $_SESSION['error'] = 'Failed to delete review from reviews table.';
-                header('Location: /categories');
-                exit();
-            }
-
-            $queryDeleteContent = "
-            DELETE FROM content
-            WHERE \"contentID\" IN (
-                SELECT r.\"contentID\"
-                FROM reviews r
-                WHERE r.\"reviewID\" = :reviewId
+            $queryDeleteReviews = "
+            WITH deleted_reviews AS (
+                DELETE FROM reviews
+                WHERE \"reviewID\" = :reviewId
+                RETURNING \"contentID\"
             )
+            DELETE FROM content
+            WHERE \"contentID\" IN (SELECT \"contentID\" FROM deleted_reviews)
         ";
-            $statementDeleteContent = $connection->prepare($queryDeleteContent);
-            $statementDeleteContent->bindParam(":reviewId", $reviewId, PDO::PARAM_INT);
 
-            if (!$statementDeleteContent->execute()) {
-                $_SESSION['error'] = 'Failed to delete review from content table.';
-                header('Location: /categories');
-                exit();
-            }
+            $statementDeleteReviews = $connection->prepare($queryDeleteReviews);
+            $statementDeleteReviews->bindParam(":reviewId", $reviewId, PDO::PARAM_INT);
+            $statementDeleteReviews->execute();
 
-            // Получаем количество удаленных строк из обоих таблиц
-            $rowCount = $statementDeleteReview->rowCount() + $statementDeleteContent->rowCount();
+            $rowCount = $statementDeleteReviews->rowCount();
 
             return $rowCount > 0;
         } catch (PDOException $e) {
-            $_SESSION['error'] = 'Error deleting review: ' . $e->getMessage();
-            header('Location: /categories');
-            exit();
+            echo "Error deleting review: " . $e->getMessage();
+            return false;
         }
     }
-
-
-
 
 }

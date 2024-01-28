@@ -39,7 +39,7 @@ include 'component/menu.php';
                         <?php if (!empty($reviewDetails) && isset($reviewDetails['content_title'])): ?>
                             <h1><?= ($reviewDetails['content_title']) ?></h1>
                         <?php else: ?>
-                            <h1>(без названия)</h1>
+                            <h1>(No title)</h1>
                         <?php endif; ?>
                     </div>
                 </div>

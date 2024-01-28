@@ -130,24 +130,21 @@ class ReviewController extends \AppController
             $categoryID = filter_input(INPUT_POST, 'category_id', FILTER_VALIDATE_INT);
             $reviewID = filter_input(INPUT_POST, 'reviewID', FILTER_VALIDATE_INT);
 
+            if ($userID !== null && $categoryID !== false && $reviewID !== false) {
+                $success = $this->reviewDatabase->deleteReviewById($reviewID);
 
-            if (!$userID || !$categoryID || !$reviewID) {
-                $_SESSION['error'] = 'Invalid parameters for review deletion.';
-                exit();
-            }
-
-
-            $success = $this->reviewDatabase->deleteReviewById($reviewID);
-
-            if ($success) {
-                $_SESSION['success'] = 'Review deleted successfully!';
-                header('Location: /categories');
-                exit();
+                if ($success) {
+                    $_SESSION['success'] = 'Review deleted successfully!';
+                } else {
+                    $_SESSION['error'] = 'Failed to delete review. Please try again later.';
+                }
             } else {
-                $_SESSION['error'] = 'Failed to delete review. Please try again later.';
-                header('Location: /categories');
-                exit();
+                $_SESSION['error'] = 'Invalid parameters for review deletion.';
             }
+
+            header('Location: /categories');
+            exit();
         }
     }
+
 }
