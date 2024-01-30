@@ -15,13 +15,10 @@
     <title>Categories</title>
 </head>
 <body>
-    
 
     <?php
     include 'component/menu.php';
     ?>
-
-
 
 
     <div class="project__page">
@@ -32,11 +29,9 @@
                 include 'component/mainHeader.php'
                 ?>
 
-
                 <div class="add__btn">
                     <a href="/add">Add new review</a>
                 </div>
-
 
                 <section class="theme__boxes">
 
@@ -51,13 +46,7 @@
                         </div>
                     <?php endforeach; ?>
                 </section>
-
-
-
             </div>
-
-
-
         </div>
     </div>
 

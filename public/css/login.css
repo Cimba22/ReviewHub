@@ -518,7 +518,7 @@ form#signupForm .inputBox input[type="submit"] {
 
 }
 
-/* TODO change only 320px  */
+
 @media (min-width: 320px) and (max-width: 480px) {
 
     .page__heading {

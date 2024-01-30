@@ -17,17 +17,14 @@ class UserDatabase extends Database
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($user === false) {
-                    // Пользователь с такой электронной почтой не найден
                     return null;
                 }
 
                 return $user;
             } else {
-                // Ошибка выполнения запроса
                 return null;
             }
         } catch (PDOException $e) {
-            // Обработка ошибок PDO
             return null;
         }
     }
@@ -39,7 +36,6 @@ class UserDatabase extends Database
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             if (!$hashedPassword) {
-                // Ошибка хеширования пароля
                 throw new Exception("Error hashing the password.");
             }
 
@@ -49,7 +45,6 @@ class UserDatabase extends Database
         ');
 
             if ($stmt === false) {
-                // Ошибка подготовки запроса
                 throw new Exception("Error preparing the SQL statement.");
             }
 
@@ -60,12 +55,9 @@ class UserDatabase extends Database
             $stmt->execute();
 
             if ($stmt->rowCount() === 0) {
-                // Ни одна строка не была добавлена, возможно, произошла ошибка
                 throw new Exception("No rows were inserted. Possible error.");
             }
         } catch (Exception $e) {
-            // Обработка ошибок
-            // Например, можно логировать ошибку или выбрасывать ее дальше
             echo "Error: " . $e->getMessage();
         }
     }
@@ -97,7 +89,6 @@ class UserDatabase extends Database
         DELETE FROM user
         WHERE userID = ?
     ');
-
         $stmt->execute([$id]);
     }
 

@@ -26,12 +26,9 @@ include 'component/menu.php';
 ?>
 
 
-
-
     <div class="project__page">
         <div class="container">
             <div class="main__inner">
-
 
 
                 <div class="main__header">
@@ -39,10 +36,6 @@ include 'component/menu.php';
 
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>

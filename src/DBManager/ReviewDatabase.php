@@ -25,7 +25,7 @@ class ReviewDatabase extends Database
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
-            echo "Ошибка подключения к базе данных: " . $e->getMessage();
+            echo "Error connecting to database: " . $e->getMessage();
             return [];
         }
     }
@@ -54,7 +54,7 @@ class ReviewDatabase extends Database
 
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Ошибка при получении отзывов: " . $e->getMessage());
+            die("Error receiving reviews: " . $e->getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ class ReviewDatabase extends Database
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
-            echo "Ошибка подключения к базе данных: " . $e->getMessage();
+            echo "Error connecting to database: " . $e->getMessage();
             return [];
         }
     }
@@ -108,7 +108,7 @@ class ReviewDatabase extends Database
 
             return $statement->fetchAll(PDO::FETCH_COLUMN);
         } catch (PDOException $e) {
-            die("Ошибка при получении заголовков отзывов: " . $e->getMessage());
+            die("Error getting review headers: " . $e->getMessage());
         }
     }
 
@@ -149,7 +149,7 @@ class ReviewDatabase extends Database
 
             return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Ошибка при получении деталей отзыва: " . $e->getMessage());
+            die("Error getting review details: " . $e->getMessage());
         }
     }
 
@@ -159,14 +159,12 @@ class ReviewDatabase extends Database
     public function addReview($userID, $directorOrAuthor, $title, $rating, $categoryid, $reviewText): bool
     {
         try {
-            // Проверки на ошибки валидации
             if (!is_numeric($rating) || $rating < -10 || $rating > 10) {
                 return false;
             }
 
             $conn = $this->database->getConnection();
 
-            // Проверяем, существует ли категория с указанным ID
             $stmtCheckCategory = $conn->prepare('SELECT categoryid FROM category WHERE categoryid = ?');
             $stmtCheckCategory->bindParam(1, $categoryid);
             $stmtCheckCategory->execute();
@@ -177,7 +175,6 @@ class ReviewDatabase extends Database
                 exit();
             }
 
-            // Вставляем данные в таблицу content и получаем ID вставленной записи
             $stmtContent = $conn->prepare('INSERT INTO content (title, "directorOrAuthor", rating, categoryid) VALUES (?, ?, ?, ?) RETURNING "contentID"');
             $stmtContent->bindParam(1, $title);
             $stmtContent->bindParam(2, $directorOrAuthor);
@@ -190,9 +187,8 @@ class ReviewDatabase extends Database
                 exit();
             }
 
-            $contentID = $stmtContent->fetchColumn();  // Получаем ID вставленной записи из RETURNING
+            $contentID = $stmtContent->fetchColumn();
 
-            // Вставляем данные в таблицу reviews
             $stmtReviews = $conn->prepare('INSERT INTO reviews ("userID", "contentID", "reviewText", "reviewDate", "categoryid") VALUES (?, ?, ?, CURRENT_DATE, ?)');
             $stmtReviews->bindParam(1, $userID);
             $stmtReviews->bindParam(2, $contentID);

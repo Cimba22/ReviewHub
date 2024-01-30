@@ -23,8 +23,6 @@ include 'component/menu.php';
 ?>
 
 
-
-
     <div class="project__page">
         <div class="container">
             <div class="main__inner">
@@ -42,10 +40,6 @@ include 'component/menu.php';
                         </div>
                     <?php endforeach; ?>
                 </section>
-
-
-
-
             </div>
         </div>
     </div>

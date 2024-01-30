@@ -14,17 +14,6 @@ class Review
     private $categoryid;
     private $reviewCover;
 
-    /**
-     * @param $reviewID
-     * @param $userID
-     * @param $contentID
-     * @param $reviewText
-     * @param $rating
-     * @param $reviewDate
-     * @param $access
-     * @param $categoryid
-     * @param $reviewCover
-     */
     public function __construct($reviewID, $userID, $contentID, $reviewText, $rating, $reviewDate, $access, $categoryid, $reviewCover)
     {
         $this->reviewID = $reviewID;

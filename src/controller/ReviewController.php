@@ -20,9 +20,7 @@ class ReviewController extends \AppController
 
     public function reviews(): void
     {
-
         $userID = SessionManager::getCurrentUserID();
-        $userLogin = SessionManager::getCurrentUserLogin();
 
         $categoryID = isset($_GET['category_id']) ? (int)$_GET['category_id'] : 1;
 
@@ -33,7 +31,6 @@ class ReviewController extends \AppController
     public function reviewDetails(): void
     {
         $reviewID = isset($_GET['reviewID']) ? (int)$_GET['reviewID'] : null;
-
 
         if (!is_numeric($reviewID)) {
             echo "Invalid review ID";
@@ -47,22 +44,16 @@ class ReviewController extends \AppController
 
     public function reviewsByCategory(): void
     {
-        // Получаем id категории из строки запроса
         $categoryID = $_GET['category_id'] ?? null;
 
-        // Проверяем, чтобы избежать SQL-инъекций (лучше использовать подготовленные запросы)
         if (!is_numeric($categoryID)) {
             echo "Invalid category ID";
             exit();
         }
 
-        // Получаем id пользователя из сессии
         $userID = SessionManager::getCurrentUserID();
 
-        // Получаем отзывы по категории и id пользователя
         $reviews = $this->reviewDatabase->getReviewsByCategoryAndUser($categoryID, $userID);
-
-        // Рендерим страницу с отзывами по категории
         $this->render('reviews', ['reviews' => $reviews]);
     }
 
@@ -73,31 +64,26 @@ class ReviewController extends \AppController
         }
 
         if ($this->isPost()) {
-            // Получение данных из формы
             $directorOrAuthor = filter_input(INPUT_POST, 'directorOrAuthor', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_FLOAT);
             $categoryid = filter_input(INPUT_POST, 'categories', FILTER_VALIDATE_INT);
             $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            // Получение userID из сессии
             $userID = SessionManager::getCurrentUserID();
 
-            // Проверка на null для безопасности
             if ($userID === null) {
                 $_SESSION['error'] = 'User not logged in.';
-                header('Location: /login');  // Редирект на страницу входа
+                header('Location: /login');
                 exit();
             }
 
-            // Дополнительные проверки, например, для числового рейтинга
             if (!is_numeric($rating) || $rating < -10 || $rating > 10) {
                 $_SESSION['error'] = 'Invalid rating value.';
                 header('Location: /add');
                 exit();
             }
 
-            // Добавление данных в базу данных
             $success = $this->reviewDatabase->addReview($userID, $directorOrAuthor, $title, $rating, $categoryid, $reviewText);
 
             if ($success) {

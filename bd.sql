@@ -87,3 +87,57 @@ create table users
             references roles
             on update cascade on delete cascade
 );
+
+
+
+
+create function getreviewsbycontentid(contentid integer)
+    returns TABLE(reviewid integer, userid integer, reviewtext text, rating double precision, reviewdate date)
+    language plpgsql
+as
+$$
+BEGIN
+    RETURN QUERY
+        SELECT reviewID, userID, reviewText, rating, reviewDate
+        FROM reviews
+        WHERE contentID = contentID;
+END;
+$$;
+
+create function getusersbyrole(rolename character varying)
+    returns TABLE(userid integer, login character varying, email character varying)
+    language plpgsql
+as
+$$
+BEGIN
+    RETURN QUERY
+        SELECT U."userID", U.login, U.email
+        FROM users U
+                 JOIN roles R ON U."roleID" = R."roleID"
+        WHERE R."roleName" = roleName;
+END;
+$$;
+
+create function set_default_registration_date() returns date
+    language plpgsql
+as
+$$
+BEGIN
+    RETURN CURRENT_DATE;
+END;
+$$;
+
+create function update_review_lastmodified() returns trigger
+    language plpgsql
+as
+$$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        NEW."lastModified" := CURRENT_TIMESTAMP;
+    ELSE
+        NEW."lastModified" := CURRENT_TIMESTAMP;
+    END IF;
+    RETURN NEW;
+END;
+$$;
+

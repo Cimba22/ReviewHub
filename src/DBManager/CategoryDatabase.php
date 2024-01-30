@@ -26,7 +26,7 @@ class CategoryDatabase extends Database
 
             return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Ошибка при получении информации о категории: " . $e->getMessage());
+            die("Error getting category information: " . $e->getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ class CategoryDatabase extends Database
 
             return $categories;
         } catch (PDOException $e) {
-            die("Ошибка при получении списка категорий: " . $e->getMessage());
+            die("Error getting list of categories: " . $e->getMessage());
         }
     }
 
@@ -70,16 +70,14 @@ class CategoryDatabase extends Database
             $statement->bindParam(":categoryName", $categoryName, PDO::PARAM_STR);
             $statement->execute();
 
-            // Получаем идентификатор новой категории
             return $statement->fetchColumn();
         } catch (PDOException $e) {
-            die("Ошибка при добавлении категории: " . $e->getMessage());
+            die("Error adding category: " . $e->getMessage());
         }
     }
 
     public function deleteCategoryById($categoryId)
     {
-        // запрос для удаления всех отзывов и самой категории по указанному categoryid.
         try {
             $connection = $this->database->getConnection();
 
@@ -95,12 +93,11 @@ class CategoryDatabase extends Database
             $statement->bindParam(":categoryId", $categoryId, PDO::PARAM_INT);
             $statement->execute();
 
-            // Проверяем, были ли удалены какие-либо строки
             $rowCount = $statement->rowCount();
 
             return $rowCount > 0;
         } catch (PDOException $e) {
-            die("Ошибка при удалении категории: " . $e->getMessage());
+            die("Error when deleting a category: " . $e->getMessage());
         }
     }
 
@@ -120,12 +117,11 @@ class CategoryDatabase extends Database
             $statement->bindParam(":categoryId", $categoryId, PDO::PARAM_INT);
             $statement->execute();
 
-            // Проверяем, были ли обновлены какие-либо строки
             $rowCount = $statement->rowCount();
 
             return $rowCount > 0;
         } catch (PDOException $e) {
-            die("Ошибка при обновлении имени категории: " . $e->getMessage());
+            die("Error updating category name: " . $e->getMessage());
         }
     }
 

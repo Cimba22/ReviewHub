@@ -13,16 +13,6 @@ class Content
     private $dateAdded;
     private $categoryid;
 
-    /**
-     * @param $contentID
-     * @param $title
-     * @param $directorOrAuthor
-     * @param $genre
-     * @param $releaseYear
-     * @param $rating
-     * @param $dateAdded
-     * @param $categoryid
-     */
     public function __construct($contentID, $title, $directorOrAuthor, $genre, $releaseYear, $rating, $dateAdded, $categoryid)
     {
         $this->contentID = $contentID;

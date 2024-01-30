@@ -24,28 +24,23 @@ class SecurityController extends AppController
 
 
         if ($this->isPost()) {
-            // Обработка логинации
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-
             if (empty($email) || empty($password)) {
                 $_SESSION['error'] = 'Both email and password are required.';
-                header('Location: /login'); // перенаправляем обратно на страницу входа
+                header('Location: /login');
                 exit();
             }
 
-            // Проверка наличия пользователя в базе данных
             $user = $this->userDatabase->getUserByEmail($email);
 
             if ($user && isset($user['userID']) && password_verify($password, $user['password'])) {
-                // Пользователь аутентифицирован, выполните необходимые действия
-                $_SESSION['userID'] = $user['userID']; // сохраняем ID пользователя в сессии
+                $_SESSION['userID'] = $user['userID'];
                 $_SESSION['roleID'] = $user['roleID'];
                 $_SESSION['login'] = $user['login'];
-                header('Location: /categories'); // перенаправляем на страницу после успешного входа
+                header('Location: /categories');
             } else {
-                // Неправильный логин или пароль
                 $_SESSION['error'] = 'Invalid login or password.';
                 header('Location: /login');
             }
@@ -64,7 +59,7 @@ class SecurityController extends AppController
         }
 
         if ($this->isPost()) {
-            // Обработка регистрации
+
             $login = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -72,7 +67,7 @@ class SecurityController extends AppController
 
             if (empty($login) || empty($email) || empty($password) || empty($confirm_password)) {
                 $_SESSION['error'] = 'All fields are required.';
-                header('Location: /registration'); // перенаправляем обратно на страницу регистрации
+                header('Location: /registration');
                 exit();
             }
 
@@ -82,7 +77,7 @@ class SecurityController extends AppController
                 exit();
             }
 
-            // Дополнительные проверки, например, проверка уникальности email
+
             $existingUser = $this->userDatabase->getUserByEmail($email);
             if ($existingUser) {
                 $_SESSION['error'] = 'User with this email already exists.';
@@ -93,28 +88,20 @@ class SecurityController extends AppController
             $this->userDatabase->addUser($login, $email, $password);
 
             $_SESSION['success'] = 'Registration successful!';
-            header('Location: /login'); // перенаправляем на страницу входа после успешной регистрации
+            header('Location: /login');
             exit();
         }
 
         $this->render('login');
     }
 
-
-
-
     public function logout() {
-        // Проверяем, активна ли сессия
         if (session_status() == PHP_SESSION_ACTIVE) {
-            // Разрушаем сессию и перенаправляем пользователя на страницу логина
             session_start();
             session_unset();
             session_destroy();
         }
-        header("Location: /login"); // Укажите URL вашей страницы логина
+        header("Location: /login");
         exit();
     }
-
-
-
 }

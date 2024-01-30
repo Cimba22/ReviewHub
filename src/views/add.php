@@ -31,7 +31,6 @@ include 'component/menu.php';
         <div class="container">
             <div class="add__container">
 
-
                 <form id="addForm" action="/add" method="post">
 
                     <div class="informationArea">
@@ -85,16 +84,8 @@ include 'component/menu.php';
                         <label for="reviewText">Write your review here: </label>
                         <textarea id="reviewText" name="reviewText" rows="10" cols="100">   </textarea>
                     </div>
-
-
-
-
                 </form>
-
-
-
             </div>
-
         </div>
     </div>
 
