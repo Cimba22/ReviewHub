@@ -56,3 +56,8 @@ To set up the project locally, follow these steps:
    ```shell
    git clone https://github.com/yourusername/your-project.git -->
 
+
+### Diagram ERD:
+
+![img_3.png](img_3.png)
+
