@@ -1,11 +1,11 @@
-# Review Repository (Web Project)
+# Review Repository (ReviewHub)
 
-Welcome to the **Review Repository** project! This web application is designed for conveniently storing and managing reviews for various products, movies, books, or other items.
+Welcome to the **ReviewHub** project! This web application is designed for conveniently storing and managing reviews for various products, movies, books, or other items.
 
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [Features](#features)
+2. [Views](#view)
 3. [Technologies Used](#technologies-used)
 <!-- 4. [Installation and Running](#installation-and-running) -->
 <!-- 5. [How to Use](#how-to-use) -->
@@ -15,13 +15,22 @@ Welcome to the **Review Repository** project! This web application is designed f
 
 The project allows users to save their opinion about a book they read, a movie they watched, or anything else. Convenient search will allow you to quickly find and recommend something from your repository to someone. Also, thanks to recordings, you can quickly refresh your memory.
 
-## Features
+## View
 
-- **Review Management**: Easily add, edit, and delete reviews with titles, text, images, and ratings.
-- **Search and Filter**: Find reviews quickly using search by title or category and filtering options.
-- **Sorting**: Sort reviews by date or rating.
-- **User Authentication**: Securely register and log in with your account.
-- **User Profile**: Manage your reviews and account settings in your user profile.
+- Hello page:
+![img.png](img.png)
+
+------------
+- Login form:
+
+![img_1.png](img_1.png)
+
+
+-----------
+
+
+- Main page with categories and superowe sidebar-menu:
+![img_2.png](img_2.png)
 
 ## Technologies Used
 
